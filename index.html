@@ -9,13 +9,14 @@
 <body>
   <div class="nav">
     <div class="nav-container">
-      <img src="./img/iccv-navbar-logo.svg" alt="ICCV Logo" style="margin-top: 0px; border-radius: 0px; position: absolute; left: 1em; max-height: 40px;">
-      <a href="https://fanyahao1.github.io/ICCV_workshop/#">Home</a>
-      <a href="https://fanyahao1.github.io/ICCV_workshop/#intro">Introduction</a>
-      <a href="https://fanyahao1.github.io/ICCV_workshop/#OpenSources">Open Sources</a>
-      <a href="https://fanyahao1.github.io/ICCV_workshop/#rules">Rules</a>
-      <a href="https://fanyahao1.github.io/ICCV_workshop/#tracks">Tracks</a>
-      <a href="https://fanyahao1.github.io/ICCV_workshop/#call">Call for Papers</a>
+      <img src="./img/iccv-navbar-logo.svg" alt="ICCV Logo" class="nav-logo">
+      <a href="#">Home</a>
+      <a href="#intro">Introduction</a>
+      <a href="#policy">Participation</a>
+      <a href="#metrics">Protocols</a>
+      <a href="#opensource">Open Sources</a>
+      <a href="#rules">Rules</a>
+      <a href="#tracks">Tracks</a>
     </div>
   </div>
 
@@ -24,7 +25,7 @@
     <div class="content" style="text-align: center; margin: 20px">
       <h1>Multi-Terrain Humanoid Locomotion Challenge in Human-Robot-Scene Interaction and Collaboration</h1>
       <div class="subtitle">
-        <a href="https://iccv.thecvf.com/">ICCV 2025</a> Workshop
+        ICCV 2025 Workshop
       </div>
       <div class="subtitle">Oct 20th (Afternoon), 2025</div>
       <div class="subtitle">Honolulu, Hawai'i</div>
@@ -35,21 +36,114 @@
 
     <div class="section" id="intro">
       <h2>Introduction</h2>
-      <p>Robust locomotion across diverse, unstructured terrain is a fundamental challenge for humanoid robots, critical for their deployment in real-world environments like homes, disaster zones, construction sites, and natural landscapes. As humanoid robots move beyond controlled labs to work alongside humans, they must navigate complex, varying surfaces reliably, efficiently, and safely to be truly useful collaborators within dynamic human-scene ecosystems.</p>
-      <p>As a key component of the <a href="https://human-robot-scene.github.io/">Human-Robot-Scene Interaction and Collaboration Workshop @ICCV2025</a> , this Multi-Terrain Humanoid Locomotion Challenge aims to accelerate progress in this vital area. We provide participants with a challenging suite of diverse terrains implemented within the high-performance Isaac Gym simulator, alongside a foundational training platform. This enables researchers to focus on developing and training advanced locomotion control policies for simulated humanoids.</p>
-      <p>Our challenge focuses on advancing multi-terrain locomotion capabilities, encompassing, but not limited to:</p>
+      <p>This challenge focuses on developing robust locomotion controllers for humanoid robots to navigate complex, unstructured terrains - a critical capability for real-world deployment in homes, disaster zones, and natural environments.</p>
+      <p>Using the high-performance Isaac Gym simulator, participants will create control policies that enable humanoids to traverse diverse surfaces including slopes, stairs and rubble terrain. The competition provides standardized robots and terrains, allowing you to focus on advanced locomotion strategies.</p>
+      <div class="highlight-box">
+        <strong>Key question for participants:</strong> Can your control policy enable a humanoid robot to traverse challenging, unseen terrains as far as possible, and as efficiently as possible when completing the course?
+      </div>
+      <h2>Challenge Overview</h2>
+      <p>Participants will develop locomotion policies for humanoid robots navigating three specially designed terrain tracks:</p>
+      
+      <h3>Robotic Platforms</h3>
+      <p>Choose from four state-of-the-art humanoid models:</p>
       <ul>
-        <li>Developing Robust Control Policies: Training locomotion strategies (e.g., reinforcement learning, optimization-based control) that enable humanoids to stably traverse a wide variety of simulated terrains (e.g., slopes, stairs, rubble, uneven ground, slippery surfaces).</li>
-        <li>Adaptation and Generalization: Creating policies capable of adapting locomotion gaits and strategies in real-time to unseen terrain variations or disturbances encountered during traversal.</li>
-        <li>Benchmarking Performance: Establishing clear metrics and evaluation protocols to rigorously measure and compare the stability, efficiency (e.g., energy consumption), speed, and robustness of locomotion strategies across the provided terrain suite.</li>
+        <li>Unitree G1</li>
+        <li>Unitree H1_2</li>
+        <li>Fourier GR-1</li>
+        <li>N1 Humanoid</li>
       </ul>
-      <p>This challenge provides a crucial stepping stone, enabling rapid iteration and innovation in simulation, ultimately contributing to the development of humanoid robots capable of seamless and reliable movement in the complex, multi-terrain environments they are destined to share with humans.</p> 
+      
+      <h3>Competition Objective</h3>
+      <p>Your goal is twofold:</p>
+      <ol>
+        <li><strong>Maximize traversal distance</strong> - Go as far as possible on each terrain track</li>
+        <li><strong>Minimize completion time</strong> - If you complete the track, faster times earn higher scores</li>
+      </ol>
+      <p>The final score combines both distance coverage and efficiency metrics.</p>
     </div>
 
-    <div class="section" id="OpenSources">
+    <!-- New Policy & Participation Section -->
+    <div class="section" id="policy">
+      <h2>Policy & Participation</h2>
+      
+      <div class="subsection">
+        <h3>Policy Specifications</h3>
+        <p>Your control policy must process standardized observations and output specific control signals:</p>
+        
+        <h4>Input (Observation Space)</h4>
+        <p>The policy will receive the following observations at each timestep:</p>
+        <ul>
+          <li>Joint positions and velocities ([joint_details])</li>
+          <li>Base orientation and angular velocity ([base_orientation_details])</li>
+          <li>Terrain height samples around the robot ([terrain_sampling_details])</li>
+          <li>Previous action values ([action_history_details])</li>
+          <li><strong>To Be Tuned!</strong></li>
+        </ul>
+        <p>Complete observation specifications will be provided in the <a href="#opensource">Open Source</a> documentation.</p>
+        
+        <h4>Output (Action Space)</h4>
+        <p>Your policy must output:</p>
+        <ul>
+          <li>Target joint positions ([joint_target_details])</li>
+          <li>Optional: <strong>To Be Tuned!</strong><!--: PD gain parameters ([pd_gain_details])--> </li>
+        </ul>
+      </div>
+      
+      <div class="subsection">
+        <h3>Participation Process</h3>
+        <p>Submit your policies through our client-server evaluation system:</p>
+        <ol>
+          <li>Register via email to [registration_email] to receive your unique participant token</li>
+          <li>Upload your policy checkpoint through our web interface</li>
+          <li>Our system will run your policy with the standardized observation space</li>
+          <li>You'll receive rollout trajectories and scores in real-time</li>
+        </ol>
+        <div class="highlight-box">
+          <strong>Note:</strong> Your policy must align with the provided observation space, otherwise, you may lose your score! 
+          We recommend using distillation if you've trained with customized observations.
+        </div>
+        <p>All submissions remain private - only aggregated scores will be made public.</p>
+      </div>
+    </div>
+
+    <div class="section" id="metrics">
+      <h2>Protocols</h2>
+      
+      <h3>Test Tracks</h3>
+      <p>Policies will be evaluated on three specialized tracks:</p>
+      <ol>
+        <li><strong>Robustness Track</strong>: Extended terrain sequences testing endurance</li>
+        <li><strong>Generalization Track</strong>: Novel terrain combinations testing adaptability</li>
+        <li><strong>Extreme Track</strong>: Maximum-difficulty terrains testing capability limits</li>
+      </ol>
+      
+      <h3>Scoring Metric</h3>
+      <p>Performance is measured using a weighted combination of:</p>
+      <ul>
+        <li><strong>Completion Rate (60%)</strong>: Percentage of track traversed</li>
+        <li><strong>Efficiency Score (40%)</strong>: Timesteps normalized by completion percentage</li>
+      </ul>
+      
+      <h4>Scoring Formula</h4>
+      <p>Total Score = (Completion %) × 60 + (Efficiency Factor) × 40</p>
+      
+      <div class="highlight-box">
+        <strong>Example Calculation:</strong><br>
+        If a robot completes 80% of a track in 500 timesteps:<br>
+        Completion Score = 80% × 60 = 48<br>
+        Efficiency Factor = (Reference Time / Actual Time) × Completion % = (400/500) × 80% = 64%<br>
+        Efficiency Score = 64% × 40 = 25.6<br>
+        <strong>Total Score = 48 + 25.6 = 73.6</strong>
+      </div>
+      
+      <p>Full evaluation details and reference times will be published in the starter kit.</p>
+    </div>
+
+    <div class="section" id="opensource">
       <h2>Open Source</h2>
       <p>
-        Our Open-source Terrain Benchmark is accessible in <a href="https://github.com/shiki-ta/Humanoid-Terrain-Bench">this repository</a>. You are required to use this repository to participate in the challenge using whichever robot you have, by default we provided Unitree H1_2、G1 and Fourier GR1T2 training code in Isaac Gym. Customized robots are also welcome, as long as they can be trained in Isaac Gym, but you may provide the Isaac Gym deploy config.
+        Our Open-source Terrain Benchmark is accessible in <a href="https://github.com/shiki-ta/Humanoid-Terrain-Bench">this repository</a>. You are required to use this repository to participate in the challenge using either Unitree H1-2, G1 or Fourier GR1, N1. 
+        <!-- Customized robots are also welcome, as long as they can be trained in Isaac Gym, but you may provide the Isaac Gym deploy config. -->
       </p>
       <h3>Resources</h3>
       <ul>
@@ -57,22 +151,24 @@
         <li><a href="https://github.com/shiki-ta/Humanoid-Terrain-Bench/tree/master/legged_gym">Training Platform</a>: A foundational training platform for developing and testing locomotion control policies.</li>
         <li><a href="https://github.com/shiki-ta/Humanoid-Terrain-Bench/blob/master/README.md">Documentation</a>: Comprehensive documentation to guide participants in using the benchmark effectively.</li>
         <li><a href="https://arxiv.org/abs/2505.18780" target="_blank">Reference paper</a>: We highly recommend you to read this paper to understand how to train a humanoid locomotion policy from scratch for multi-terrain crossing in Isaac Gym.</li>
-        <li>Evaluation Metrics: Standardized metrics for assessing locomotion performance across different terrains.</li>
+        <!-- <li>Evaluation Metrics: Standardized metrics for assessing locomotion performance across different terrains.</li> -->
       </ul>
     </div>
 
+    <!-- Updated Rules Section -->
     <div class="section" id="rules">
       <h2>Rules</h2>
       <ol>
         <li><strong>Eligibility:</strong> Participation is open to academic, industry, and independent teams worldwide. Each team may submit only one entry.</li>
-        <li><strong>Robot Requirements:</strong> You may use any simulated humanoid robot compatible with Isaac Gym. Default support is provided for Unitree H1_2, G1, and Fourier GR1T2. Custom robots are welcome but must include deployment configs for Isaac Gym and contact the organizer in advance to adapt the code properly.</li>
-        <li><strong>Submission:</strong> Teams must submit both their trained locomotion policy and the model inference code according to the provided submission guidelines. All entries must be reproducible.</li>
-        <li><strong>Evaluation:</strong> All policies will be tested on a standardized suite of terrains and disturbances. Performance will be measured via completion rate and success rate. Speed is not a mandatory indicator, but in the same situation, faster speed will be better.</li>
+        <li><strong>Submission:</strong> Submit trained policies through our online system as described in the <a href="#policy">Policy & Participation</a> section.</li>
+        <li><strong>Evaluation:</strong> Policies will be evaluated on the three competition tracks using the <a href="#metrics">Evaluation Protocol</a>.</li>
         <li><strong>Fair Play:</strong> Use of cheating techniques, hard-coding the test environment, or exploiting simulator bugs is strictly prohibited.</li>
         <li><strong>Final Decisions:</strong> The organizing committee reserves the right to make final decisions regarding rule interpretation and winner selection.</li>
       </ol>
     </div>
 
+    <!-- Existing Tracks Section (unchanged) -->
+    
     <div class="section" id="tracks">
       <h2>Tracks</h2>
       <p>We have designed different tracks to evaluate the different performance of robots. All terrain used for evaluation comes from the <a href="https://github.com/shiki-ta/Humanoid-Terrain-Bench/blob/master/challenging_terrain/terrain_base/single_terrain.py">single terrain model</a> of the terrain module provided in the code.</p>
@@ -127,76 +223,6 @@
           </div>
         </div>
       </div>
-    </div>
-    
-    
-    
-    <!-- <div class="section" id="call">
-      <h2>Call for Papers</h2>
-      <p>
-        We invite submissions of <strong>long papers</strong> (up to 8 pages excluding references) and <strong>short papers</strong> (up to 4 pages excluding references) that explore cutting-edge research in multi-terrain humanoid locomotion.
-      </p>
-
-      <h3>Paper Topics</h3>
-      <p>
-        Topics of interest include, but are not limited to:
-      </p>
-      
-      <div class="call-topics">
-        <div class="topic-card">
-          <h4>Multi-Terrain Locomotion</h4>
-          <p>Control strategies for navigating diverse terrains including slopes, stairs, rubble, and uneven surfaces</p>
-        </div>
-        
-        <div class="topic-card">
-          <h4>Adaptive Control</h4>
-          <p>Real-time adaptation to changing terrain conditions and unexpected disturbances</p>
-        </div>
-        
-        <div class="topic-card">
-          <h4>Simulation to Reality</h4>
-          <p>Transfer learning approaches for bridging the sim-to-real gap in locomotion</p>
-        </div>
-        
-        <div class="topic-card">
-          <h4>Energy Efficiency</h4>
-          <p>Optimizing power consumption while maintaining stability on challenging terrains</p>
-        </div>
-        
-        <div class="topic-card">
-          <h4>Learning Frameworks</h4>
-          <p>Reinforcement learning, imitation learning, and hybrid approaches for locomotion</p>
-        </div>
-        
-        <div class="topic-card">
-          <h4>Benchmarking & Metrics</h4>
-          <p>Standardized evaluation protocols for multi-terrain locomotion performance</p>
-        </div>
-      </div>
-
-      <div class="important-dates">
-        <h3>Important Dates</h3>
-        <div class="date-item">
-          <div class="date-label">Paper Submission:</div>
-          <div>Waiting to decide</div>
-        </div>
-        <div class="date-item">
-          <div class="date-label">Notification to Authors:</div>
-          <div>Waiting to decide</div>
-        </div>
-        <div class="date-item">
-          <div class="date-label">Camera-Ready Deadline:</div>
-          <div>Waiting to decide</div>
-        </div>
-        <div class="date-item">
-          <div class="date-label">Workshop Date:</div>
-          <div>Waiting to decide</div>
-        </div>
-      </div> -->
-
-        <!-- <h3>Submission Guidelines</h3>
-        <p>All submissions must be in PDF format and follow the official ICCV 2025 template. Papers should be submitted through the <a href="#">CMT submission system</a> by the specified deadline.</p>
-        <p>As a dedicated sub-area within the Human-Robot-Scene Interaction and Collaboration Workshop @ICCV2025, accepted papers will be presented at the workshop and included in the proceedings.</p> -->
     </div>
 
     <footer>
