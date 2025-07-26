@@ -77,7 +77,7 @@
           <li>Base orientation and angular velocity ([base_orientation_details])</li>
           <li>Terrain height samples around the robot ([terrain_sampling_details])</li>
           <li>Previous action values ([action_history_details])</li>
-          <li><strong>To Be Tuned!</strong></li>
+          <li><strong>Keep Tuned!</strong></li>
         </ul>
         <p>Complete observation specifications will be provided in the <a href="#opensource">Open Source</a> documentation.</p>
         
@@ -85,8 +85,12 @@
         <p>Your policy must output:</p>
         <ul>
           <li>Target joint positions ([joint_target_details])</li>
-          <li>Optional: <strong>To Be Tuned!</strong><!--: PD gain parameters ([pd_gain_details])--> </li>
+          <li>Optional: <strong>Keep Tuned!</strong><!--: PD gain parameters ([pd_gain_details])--> </li>
         </ul>
+      </div>
+      <div class="highlight-box">
+        <strong>Note:</strong> Your policy must align with the provided observation space, otherwise, you may lose your score! 
+        We recommend using distillation if you've trained with customized observations.
       </div>
       
       <div class="subsection">
@@ -94,13 +98,13 @@
         <p>Submit your policies through our client-server evaluation system:</p>
         <ol>
           <li>Register via email to [registration_email] to receive your unique participant token</li>
-          <li>Upload your policy checkpoint through our web interface</li>
-          <li>Our system will run your policy with the standardized observation space</li>
+          <li>You can evaluate your policy periodically via our REST API </li>
           <li>You'll receive rollout trajectories and scores in real-time</li>
         </ol>
         <div class="highlight-box">
-          <strong>Note:</strong> Your policy must align with the provided observation space, otherwise, you may lose your score! 
-          We recommend using distillation if you've trained with customized observations.
+          <strong>Registration template</strong>
+          <p><i>Subject</i>: ICCV2025 Humanoid Locomotion Challenge Registration</p>
+          <p style="color: red;">Stay Tuned!</p>
         </div>
         <p>All submissions remain private - only aggregated scores will be made public.</p>
       </div>
@@ -109,8 +113,8 @@
     <div class="section" id="metrics">
       <h2>Protocols</h2>
       
-      <h3>Test Tracks</h3>
-      <p>Policies will be evaluated on three specialized tracks:</p>
+      <h3>Test Scenarios</h3>
+      <p>Policies will be evaluated on three specialized Scenarios:</p>
       <ol>
         <li><strong>Robustness Track</strong>: Extended terrain sequences testing endurance</li>
         <li><strong>Generalization Track</strong>: Novel terrain combinations testing adaptability</li>
@@ -125,6 +129,7 @@
       </ul>
       
       <h4>Scoring Formula</h4>
+      <div style="color: gray;"><strong>Score Metric Keep Tuned!</strong></div>
       <p>Total Score = (Completion %) × 60 + (Efficiency Factor) × 40</p>
       
       <div class="highlight-box">
@@ -137,13 +142,22 @@
       </div>
       
       <p>Full evaluation details and reference times will be published in the starter kit.</p>
+      <h3><b style="color: red">🏆 Awards</b></h3>
+        <p>
+          🥇 First Prize ($1000) 🥈 Second Prize ($500) 🥉 Third Prize ($300)
+        </p>
+        <div class="highlight-box"><strong>Note</strong> 
+          <ul>
+            <li>Participation in the award selection requires open-source code.</li>
+            <li>Awards and rankings are separate.</li>
+          </ul>
+        </div>
     </div>
 
     <div class="section" id="opensource">
       <h2>Open Source</h2>
       <p>
-        Our Open-source Terrain Benchmark is accessible in <a href="https://github.com/shiki-ta/Humanoid-Terrain-Bench">this repository</a>. You are required to use this repository to participate in the challenge using either Unitree H1-2, G1 or Fourier GR1, N1. 
-        <!-- Customized robots are also welcome, as long as they can be trained in Isaac Gym, but you may provide the Isaac Gym deploy config. -->
+        Our Open-source Terrain Benchmark is accessible in <a href="https://github.com/shiki-ta/Humanoid-Terrain-Bench">this repository</a>. You are required to use this repository to participate in the challenge using either Unitree H1-2, G1 or Fourier N1. 
       </p>
       <h3>Resources</h3>
       <ul>
@@ -151,23 +165,8 @@
         <li><a href="https://github.com/shiki-ta/Humanoid-Terrain-Bench/tree/master/legged_gym">Training Platform</a>: A foundational training platform for developing and testing locomotion control policies.</li>
         <li><a href="https://github.com/shiki-ta/Humanoid-Terrain-Bench/blob/master/README.md">Documentation</a>: Comprehensive documentation to guide participants in using the benchmark effectively.</li>
         <li><a href="https://arxiv.org/abs/2505.18780" target="_blank">Reference paper</a>: We highly recommend you to read this paper to understand how to train a humanoid locomotion policy from scratch for multi-terrain crossing in Isaac Gym.</li>
-        <!-- <li>Evaluation Metrics: Standardized metrics for assessing locomotion performance across different terrains.</li> -->
       </ul>
     </div>
-
-    <!-- Updated Rules Section -->
-    <div class="section" id="rules">
-      <h2>Rules</h2>
-      <ol>
-        <li><strong>Eligibility:</strong> Participation is open to academic, industry, and independent teams worldwide. Each team may submit only one entry.</li>
-        <li><strong>Submission:</strong> Submit trained policies through our online system as described in the <a href="#policy">Policy & Participation</a> section.</li>
-        <li><strong>Evaluation:</strong> Policies will be evaluated on the three competition tracks using the <a href="#metrics">Evaluation Protocol</a>.</li>
-        <li><strong>Fair Play:</strong> Use of cheating techniques, hard-coding the test environment, or exploiting simulator bugs is strictly prohibited.</li>
-        <li><strong>Final Decisions:</strong> The organizing committee reserves the right to make final decisions regarding rule interpretation and winner selection.</li>
-      </ol>
-    </div>
-
-    <!-- Existing Tracks Section (unchanged) -->
     
     <div class="section" id="tracks">
       <h2>Tracks</h2>
@@ -223,6 +222,17 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="section" id="rules">
+      <h2>Rules</h2>
+      <ol>
+        <li><strong>Eligibility:</strong> Participation is open to academic, industry, and independent teams worldwide. Each team may submit only one entry.</li>
+        <li><strong>Submission:</strong> Submit trained policies through our online system as described in the <a href="#policy">Policy & Participation</a> section.</li>
+        <li><strong>Evaluation:</strong> Policies will be evaluated on the three competition tracks using the <a href="#metrics">Evaluation Protocol</a>.</li>
+        <li><strong>Fair Play:</strong> Use of cheating techniques, hard-coding the test environment, or exploiting simulator bugs is strictly prohibited.</li>
+        <li><strong>Final Decisions:</strong> The organizing committee reserves the right to make final decisions regarding rule interpretation and winner selection.</li>
+      </ol>
     </div>
 
     <footer>
